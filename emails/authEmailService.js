@@ -10,7 +10,7 @@ export async function sendEmailVerification({name,email,token}) {
 
    //enviar al email
    const info = await transporter.sendMail({
-        from: 'AppSalon<cuentas@appsalon.com>',
+        from: process.env.EMAIL_FROM || 'AppSalon<cuentas@appsalon.com>', // Remitente configurable desde .env
         to:email,
         subject:'AppSalon - Confirmar tu cuenta',
         html:`<p>Hola: ${name},confirma tu cuenta en AppSalon</p>
@@ -32,7 +32,7 @@ export async function sendEmailPasswordReset({name,email,token}) {
   
      //enviar al email
      const info = await transporter.sendMail({
-          from: 'AppSalon<cuentas@appsalon.com>',
+          from: process.env.EMAIL_FROM || 'AppSalon<cuentas@appsalon.com>', // Remitente configurable desde .env
           to:email,
           subject:'AppSalon - Restablece tu password',
           text:"AppSalon - Restablece tu password",

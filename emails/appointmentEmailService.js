@@ -10,8 +10,8 @@ export async function sendEmailNewAppointment({date, time}) {
 
    //enviar al email
    const info = await transporter.sendMail({
-    from: 'AppSalon<citas@appsalon.com>',
-    to:'admin@appsalon.com',
+    from: process.env.EMAIL_FROM || 'AppSalon <citas@appsalon.com>', // Remitente configurable desde .env
+    to: process.env.ADMIN_EMAIL || 'admin@appsalon.com', // Correo del admin desde .env
     subject:'AppSalon - nueva Cita',
     text:'AppSalon - nueva Cita',
     html:`<p>Hola:admin, tienes una nueva cita</p>
@@ -32,8 +32,8 @@ export async function sendEmailCancelledAppointment({date, time }) {
 
     // Enviar el email
     const info = await transporter.sendMail({
-        from: 'AppSalon <citas@appsalon.com>',
-        to: 'admin@appsalon.com',
+        from: process.env.EMAIL_FROM || 'AppSalon <citas@appsalon.com>', // Remitente configurable desde .env
+        to: process.env.ADMIN_EMAIL || 'admin@appsalon.com', // Correo del admin desde .env
         subject: "AppSalon - Cita Cancelada",
         text: "AppSalon - Cita Cancelada",
         html: `<p>Hola: Admin, un usuario ha cancelado una cita.</p>
@@ -54,8 +54,8 @@ export async function sendEmailUpdateAppointment({date, time }) {
 
     // Enviar el email
     const info = await transporter.sendMail({
-        from: 'AppSalon <citas@appsalon.com>',
-        to: 'admin@appsalon.com',
+        from: process.env.EMAIL_FROM || 'AppSalon <citas@appsalon.com>', // Remitente configurable desde .env
+        to: process.env.ADMIN_EMAIL || 'admin@appsalon.com', // Correo del admin desde .env
         subject: "AppSalon - Cita Actualizada",
         text: "AppSalon - Cita Actualizada",
         html: `<p>Hola: Admin, un usuario ha modificado una cita.</p>
